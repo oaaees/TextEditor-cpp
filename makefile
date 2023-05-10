@@ -5,9 +5,9 @@ LDFLAGS  = $(shell fltk-config --use-gl --use-images --ldflags )
 LDSTATIC = $(shell fltk-config --use-gl --use-images --ldstaticflags )
 LINK     = $(CXX)
  
-TARGET = test
-OBJS = hello.o
-SRCS = hello.cpp
+TARGET = TextEditor
+OBJS = EditorWindow.o main.o
+SRCS = EditorWindow.cpp main.cpp
  
 .SUFFIXES: .o .cpp
 %.o: %.cpp
@@ -17,9 +17,9 @@ all: $(TARGET)
 	$(LINK) -o $(TARGET) $(OBJS) $(LDSTATIC)
  
 $(TARGET): $(OBJS)
-hello.o: hello.cpp #hello.h
+main.o: main.cpp
+EditorWindow.o: EditorWindow.cpp EditorWindow.h
 
- 
 clean: $(TARGET) $(OBJS)
 	rm -f *.o 2> /dev/null
 	rm -f $(TARGET) 2> /dev/null
